@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>hrm_management_interface</module>
-        <module>hrm_management_service</module>
+        <module>hrm_management_service_9001</module>
     </modules>
 
 </project>
