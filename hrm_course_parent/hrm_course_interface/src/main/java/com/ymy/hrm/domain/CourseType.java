@@ -1,5 +1,6 @@
 package com.ymy.hrm.domain;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -23,10 +24,14 @@ public class CourseType extends Model<CourseType> {
     private Long id;
     private Long createTime;
     private Long updateTime;
+
     /**
      * 类型名
      */
     private String name;
+
+    @TableField(exist = false)//数据库没有字段和它匹配，就是用来查询关联查询值
+    private CourseType parent;
     /**
      * 父ID
      */
@@ -44,6 +49,15 @@ public class CourseType extends Model<CourseType> {
      * 路径
      */
     private String path;
+
+    public CourseType getParent() {
+        return parent;
+    }
+
+    public void setParent(CourseType parent) {
+        this.parent = parent;
+    }
+
     /**
      * 商品数量
      */

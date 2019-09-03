@@ -6,10 +6,14 @@ spring:
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/jackyang92/hrm_config.git
-          username: jackyang92
-          password: jack13198539137
+        native:
+          search-locations: C:/Users/jackyang/Desktop/hrm_config/hrm_config
+  profiles:
+    active: native
+#        git:
+#          uri: https://github.com/jackyang92/hrm_config.git
+#          username: jackyang92
+#          password: jack13198539137
 eureka:
   client:
     service-url:

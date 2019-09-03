@@ -2,6 +2,8 @@ package com.ymy.hrm.service;
 
 import com.ymy.hrm.domain.CourseType;
 import com.baomidou.mybatisplus.service.IService;
+import com.ymy.hrm.query.CourseTypeQuery;
+import com.ymy.hrm.util.PageList;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ICourseTypeService extends IService<CourseType> {
 
+    PageList<CourseType> selectListPage(CourseTypeQuery query);
 }

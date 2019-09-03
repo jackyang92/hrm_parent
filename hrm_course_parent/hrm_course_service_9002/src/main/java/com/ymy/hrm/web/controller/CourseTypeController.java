@@ -81,8 +81,9 @@ public class CourseTypeController {
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public PageList<CourseType> json(@RequestBody CourseTypeQuery query)
     {
-        Page<CourseType> page = new Page<CourseType>(query.getPage(),query.getRows());
-            page = courseTypeService.selectPage(page);
-            return new PageList<CourseType>(page.getTotal(),page.getRecords());
+//        Page<CourseType> page = new Page<CourseType>(query.getPage(),query.getRows());
+//            page = courseTypeService.selectPage(page);
+//            return new PageList<CourseType>(page.getTotal(),page.getRecords());
+        return courseTypeService.selectListPage(query);
     }
 }
