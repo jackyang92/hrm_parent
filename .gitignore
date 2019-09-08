@@ -1,9 +1,0 @@
-/hrm_management_parent/hrm_management_interface/target
-/hrm_course_parent/hrm_course_service_9002/target
-/hrm_course_parent/hrm_course_interface/target
-/hrm_basic_parent/hrm_basic_util/target
-/hrm_support_parent/hrm_zuul_9527/target
-/hrm_support_parent/hrm_eureka_7001/target
-/hrm_support_parent/hrm_config_server_8848/target
-/hrm_mybatisplus_gen/target
-/hrm_management_parent/hrm_management_service_9001/target

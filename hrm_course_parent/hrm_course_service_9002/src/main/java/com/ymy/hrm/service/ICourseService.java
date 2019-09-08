@@ -20,4 +20,8 @@ public interface ICourseService extends IService<Course> {
      * @return
      */
     PageList<Course> selectListPage(CourseQuery query);
+
+    void onLine(Long[] ids);
+
+    void offLine(Long[] ids);
 }

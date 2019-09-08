@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CourseApplication9002.class)
@@ -27,5 +29,18 @@ public class ICourseTypeServiceTest {
             System.out.println("===========");
         }
     }
-
+    @Test
+    public void testQueryTypeTree()throws Exception{
+        List<CourseType> courseTypes = courseTypeService.queryTypeTree(0L);
+        for (CourseType courseType : courseTypes) {
+            System.out.println(courseType);
+            List<CourseType> children = courseType.getChildren();
+            if (null != children){
+                for (CourseType child : children) {
+                    System.out.println(child);
+                }
+            }
+        }
+        
+        }
 }

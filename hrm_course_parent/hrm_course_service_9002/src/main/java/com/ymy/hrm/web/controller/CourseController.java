@@ -7,6 +7,8 @@ import com.ymy.hrm.util.AjaxResult;
 import com.ymy.hrm.util.PageList;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.ymy.hrm.util.UserInfoHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/course")
 public class CourseController {
+    private Logger logger = LoggerFactory.getLogger(CourseController.class);
     @Autowired
     public ICourseService courseService;
 
@@ -42,7 +45,6 @@ public class CourseController {
             e.printStackTrace();
             return AjaxResult.me().setSuccess(false).setMessage("保存对象失败！"+e.getMessage());
         }
-
     }
 
     /**
@@ -92,5 +94,29 @@ public class CourseController {
         Page<Course> page = new Page<Course>(query.getPage(),query.getRows());
             page = courseService.selectPage(page);
             return new PageList<Course>(page.getTotal(),page.getRecords());
+    }
+    @PostMapping("/onLine")
+    public AjaxResult online(@RequestBody Long[] ids){
+        try {
+            courseService.onLine(ids);
+            return AjaxResult.me();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("online failed!"+e);
+            return AjaxResult.me().setSuccess(false)
+                    .setMessage("上线失败!"+e.getMessage());
+        }
+    }
+    @PostMapping("/offLine")
+    public AjaxResult offLine(@RequestBody Long[] ids){
+        try {
+            courseService.offLine(ids);
+            return AjaxResult.me();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("online failed!"+e);
+            return AjaxResult.me().setSuccess(false)
+                    .setMessage("上线失败!"+e.getMessage());
+        }
     }
 }
