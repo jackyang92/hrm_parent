@@ -15,11 +15,11 @@ public class GenteratorCode {
 
     public static void main(String[] args) throws InterruptedException {
         //用来获取Mybatis-Plus.properties文件的配置信息
-        ResourceBundle rb = ResourceBundle.getBundle("mybatisplus-es");
+        ResourceBundle rb = ResourceBundle.getBundle("mybatisplus-page");
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir(rb.getString("OutputDir"));
+        gc.setOutputDir(rb.getString("ServiceOutputDir"));
         gc.setFileOverride(true);
         gc.setActiveRecord(true);// 开启 activeRecord 模式
         gc.setEnableCache(false);// XML 二级缓存
@@ -40,7 +40,7 @@ public class GenteratorCode {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[] { "t_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategy.setInclude(new String[]{"t_es_course"}); // 需要生成的表
+        strategy.setInclude(new String[]{"t_page_config","t_site","t_pager"}); // 需要生成的表
         mpg.setStrategy(strategy);
         // 包配置
         PackageConfig pc = new PackageConfig();
@@ -68,7 +68,7 @@ public class GenteratorCode {
         focList.add(new FileOutConfig("/templates/mapper.xml.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDirXml")+ "/com/ymy/hrm/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                return rb.getString("ServiceOutputDirXml")+ "/com/ymy/hrm/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
             }
         });
         cfg.setFileOutConfigList(focList);
@@ -77,7 +77,7 @@ public class GenteratorCode {
         focList.add(new FileOutConfig("/templates/controller.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("OutputDir")+ "/com/ymy/hrm/web/controller/" + tableInfo.getEntityName() + "Controller.java";
+                return rb.getString("ServiceOutputDir")+ "/com/ymy/hrm/web/controller/" + tableInfo.getEntityName() + "Controller.java";
             }
         });
         //=====================接口里面存放==================================//
@@ -85,28 +85,28 @@ public class GenteratorCode {
         focList.add(new FileOutConfig("/templates/entity.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("InterfaceOutputDirBase")+ "/com/ymy/hrm/domain/" + tableInfo.getEntityName() + ".java";
+                return rb.getString("CommonOutputDirBase")+ "/com/ymy/hrm/domain/" + tableInfo.getEntityName() + ".java";
             }
         });
         // 调整 query 生成目录演示
         focList.add(new FileOutConfig("/templates/query.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("InterfaceOutputDirBase")+ "/com/ymy/hrm/query/" + tableInfo.getEntityName() + "Query.java";
+                return rb.getString("CommonOutputDirBase")+ "/com/ymy/hrm/query/" + tableInfo.getEntityName() + "Query.java";
             }
         });
         // 调整 client 生成目录演示
         focList.add(new FileOutConfig("/templates/client.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("InterfaceOutputDirBase")+ "/com/ymy/hrm/client/" + tableInfo.getEntityName() + "Client.java";
+                return rb.getString("ClientOutputDirBase")+ "/com/ymy/hrm/client/" + tableInfo.getEntityName() + "Client.java";
             }
         });
         // 调整 ClientHystrixFallbackFactory 生成目录演示
         focList.add(new FileOutConfig("/templates/ClientHystrixFallbackFactory.java.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return rb.getString("InterfaceOutputDirBase")+ "/com/ymy/hrm/client/" + tableInfo.getEntityName() + "ClientHystrixFallbackFactory.java";
+                return rb.getString("ClientOutputDirBase")+ "/com/ymy/hrm/client/" + tableInfo.getEntityName() + "ClientHystrixFallbackFactory.java";
             }
         });
 
