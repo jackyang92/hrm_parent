@@ -91,9 +91,9 @@ public class CourseController {
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public PageList<Course> json(@RequestBody CourseQuery query)
     {
-        Page<Course> page = new Page<Course>(query.getPage(),query.getRows());
-            page = courseService.selectPage(page);
-            return new PageList<Course>(page.getTotal(),page.getRecords());
+//        Page<Course> page = new Page<Course>(query.getPage(),query.getRows());
+//            page = courseService.selectPage(page);
+        return courseService.selectListPage(query);
     }
     @PostMapping("/onLine")
     public AjaxResult online(@RequestBody Long[] ids){

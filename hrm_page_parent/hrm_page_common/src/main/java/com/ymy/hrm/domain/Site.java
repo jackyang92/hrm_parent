@@ -81,11 +81,11 @@ public class Site extends Model<Site> {
     @Override
     public String toString() {
         return "Site{" +
-        ", id=" + id +
-        ", name=" + name +
-        ", url=" + url +
-        ", description=" + description +
-        ", sn=" + sn +
-        "}";
+                ", id=" + id +
+                ", name=" + name +
+                ", url=" + url +
+                ", description=" + description +
+                ", sn=" + sn +
+                "}";
     }
 }

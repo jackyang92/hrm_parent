@@ -6,6 +6,7 @@ import com.ymy.hrm.util.FastDfsApiOpr;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,21 +19,26 @@ import java.io.OutputStream;
 @RequestMapping("/fastdfs")
 public class FastDfsController {
     Logger logger = LoggerFactory.getLogger(FastDfsController.class);
-    @PostMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile file){
+//    @PostMapping("/upload")
+//    public String upload(@RequestParam("file") MultipartFile file) {
+
+    @PostMapping(value="/upload", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}
+            , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String upload(@RequestPart("file") MultipartFile file) {
         try {
-            String filename = file.getOriginalFilename();//拿到原始文件名  1.png
-            String substring = filename.substring(filename.lastIndexOf(".") + 1);//拿到后缀
-            System.out.println(substring);
-            return FastDfsApiOpr.upload(file.getBytes(),substring);
-        } catch (IOException e) {
+            String fileName = file.getOriginalFilename(); // 1.png
+            String extName = fileName.substring(fileName.lastIndexOf(".")+1);
+            System.out.println(extName);
+            return FastDfsApiOpr.upload(file.getBytes(),extName);
+        }catch (Exception e){
             e.printStackTrace();
-            logger.error("error"+e.getMessage());
+            logger.error("error...."+e.getMessage());
         }
-    return null;
+        return null;
     }
+
     @DeleteMapping("/delete")
-    public AjaxResult delete(@RequestParam("path") String path){
+    public AjaxResult delete(@RequestParam("path") String path) {
         ///group1/xxxx
         try {
             String pathTmp = path.substring(1); // goup1/xxxxx/yyyy
@@ -48,7 +54,8 @@ public class FastDfsController {
             return AjaxResult.me().setSuccess(false).setMessage(e.getMessage());
         }
     }
-    @GetMapping("/download")
+
+    @GetMapping(value = "/download",consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void download(@RequestParam("path")String path, HttpServletResponse response) {
         String pathTmp = path.substring(1); // goup1/xxxxx/yyyy
         String groupName =  pathTmp.substring(0, pathTmp.indexOf("/")); //goup1
@@ -83,5 +90,4 @@ public class FastDfsController {
             }
         }
     }
-
 }

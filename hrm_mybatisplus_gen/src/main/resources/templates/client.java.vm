@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value = "ZUUL-GATEWAY",configuration = FeignClientsConfiguration.class,
+@FeignClient(value = "HRM-USER",configuration = FeignClientsConfiguration.class,
         fallbackFactory = ${entity}ClientHystrixFallbackFactory.class)
 @RequestMapping("/user/${table.entityPath}")
 public interface ${entity}Client {

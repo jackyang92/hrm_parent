@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
 public class ICourseTypeServiceTest {
     @Autowired
     private ICourseTypeService courseTypeService;
+
     @Test
     public void test()throws Exception{
         PageList<CourseType> page = courseTypeService.selectListPage(new CourseTypeQuery());
@@ -43,4 +44,9 @@ public class ICourseTypeServiceTest {
         }
         
         }
+    //初始化课程管理首页
+    @Test
+    public void testInitCourseSiteIndex()throws Exception{
+        courseTypeService.InitCourseSiteIndex();
+    }
 }

@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2019-09-09
  */
 public interface IPageConfigService extends IService<PageConfig> {
-
+    void staticPage(String dataKey, String pageName);
 }

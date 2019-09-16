@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.ymy.hrm.domain.Course;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.ymy.hrm.query.CourseQuery;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ import java.util.Map;
  */
 public interface CourseMapper extends BaseMapper<Course> {
 
-    List<Course> loadListPage(Page<Course> page, CourseQuery query);
+    List<Course> loadListPage(Page<Course> page,@Param("query") CourseQuery query);
 
     void batchOffline(List<Long> longs);
 

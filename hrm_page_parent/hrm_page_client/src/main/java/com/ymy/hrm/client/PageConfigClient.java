@@ -9,17 +9,18 @@ import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-@FeignClient(value = "ZUUL-GATEWAY",configuration = FeignClientsConfiguration.class,
+@FeignClient(value = "HRM-PAGE",configuration = FeignClientsConfiguration.class,
         fallbackFactory = PageConfigClientHystrixFallbackFactory.class)
-@RequestMapping("/user/pageConfig")
+@RequestMapping("/pageConfig")
 public interface PageConfigClient {
     /**
      * 保存和修改公用的
      * @param pageConfig  传递的实体
      * @return Ajaxresult转换结果
      */
-    @RequestMapping(value="/add",method= RequestMethod.POST)
+    @RequestMapping(value="/save",method= RequestMethod.POST)
     AjaxResult save(PageConfig pageConfig);
 
     /**
@@ -50,4 +51,7 @@ public interface PageConfigClient {
      */
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     PageList<PageConfig> json(@RequestBody PageConfigQuery query);
+
+    @PostMapping("/staticPage")
+    AjaxResult staticPage(Map<String, String> map);
 }

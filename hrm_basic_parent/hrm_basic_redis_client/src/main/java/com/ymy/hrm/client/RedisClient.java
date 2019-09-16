@@ -14,7 +14,12 @@ public interface RedisClient {
 
     @PostMapping
     void set(@RequestParam("key")String key, @RequestParam("value")String value);
+
+
+    @PostMapping("/timeout")
+    void set(@RequestParam("key")String key, @RequestParam("value")String value,@RequestParam("timeout")int timeout);
     @GetMapping
     String get(@RequestParam("key")String key);
+
 
 }

@@ -24,6 +24,8 @@ public class PageConfig extends Model<PageConfig> {
     private Long id;
     @TableField("template_url")
     private String templateUrl;
+    @TableField("templateName")
+    private String templateName;
     /**
      * redis中数据所对应key
      */
@@ -42,6 +44,7 @@ public class PageConfig extends Model<PageConfig> {
     private String pageUrl;
     @TableField("page_id")
     private Long pageId;
+
 
 
     public Long getId() {
@@ -100,6 +103,14 @@ public class PageConfig extends Model<PageConfig> {
         this.pageId = pageId;
     }
 
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
+    }
+
     @Override
     protected Serializable pkVal() {
         return this.id;
@@ -108,13 +119,13 @@ public class PageConfig extends Model<PageConfig> {
     @Override
     public String toString() {
         return "PageConfig{" +
-        ", id=" + id +
-        ", templateUrl=" + templateUrl +
-        ", dataKey=" + dataKey +
-        ", physicalPath=" + physicalPath +
-        ", dfsType=" + dfsType +
-        ", pageUrl=" + pageUrl +
-        ", pageId=" + pageId +
-        "}";
+                ", id=" + id +
+                ", templateUrl=" + templateUrl +
+                ", dataKey=" + dataKey +
+                ", physicalPath=" + physicalPath +
+                ", dfsType=" + dfsType +
+                ", pageUrl=" + pageUrl +
+                ", pageId=" + pageId +
+                "}";
     }
 }

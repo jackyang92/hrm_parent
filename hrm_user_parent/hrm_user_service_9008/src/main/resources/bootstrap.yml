@@ -1,0 +1,24 @@
+server:
+  port: 9008
+spring:
+  application:
+    name: hrm-user
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hrm_user
+    username: root
+    password: 123456
+mybatis-plus:
+  mapper-locations: classpath:com/ymy/hrm/mapper/*Mapper.xml
+  type-aliases-package: com.ymy.hrm.domain,com.ymy.hrm.query
+sms:
+  acount:
+    sid: 8aaf07086d05d00c016d38ef6b5e1afe
+    token: 256c26c9e6524e60a54fa0ed7cbe186d
+    appId: 8a216da86d05dc0b016d391cde8c1a4a
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    prefer-ip-address: true

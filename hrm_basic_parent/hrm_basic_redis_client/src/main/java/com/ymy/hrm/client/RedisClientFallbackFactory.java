@@ -14,6 +14,11 @@ public class RedisClientFallbackFactory implements FallbackFactory<RedisClient> 
             }
 
             @Override
+            public void set(String key, String value, int timeout) {
+
+            }
+
+            @Override
             public String get(String key) {
                 return null;
             }

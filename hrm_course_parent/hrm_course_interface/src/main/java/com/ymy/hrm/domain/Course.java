@@ -50,6 +50,7 @@ public class Course extends Model<Course> {
     @TableField("tenant_id")
     private Long tenantId;
     private String tenantName;
+
     /**
      * 创建用户
      */
@@ -186,18 +187,20 @@ public class Course extends Model<Course> {
     @Override
     public String toString() {
         return "Course{" +
-        ", id=" + id +
-        ", name=" + name +
-        ", users=" + users +
-        ", courseTypeId=" + courseTypeId +
-        ", grade=" + grade +
-        ", status=" + status +
-        ", tenantId=" + tenantId +
-        ", tenantName=" + tenantName +
-        ", userId=" + userId +
-        ", userName=" + userName +
-        ", startTime=" + startTime +
-        ", endTime=" + endTime +
-        "}";
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", users='" + users + '\'' +
+                ", courseTypeId=" + courseTypeId +
+                ", grade=" + grade +
+                ", status=" + status +
+                ", tenantId=" + tenantId +
+                ", tenantName='" + tenantName + '\'' +
+                ", userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", courseType=" + courseType +
+                ", detail=" + detail +
+                '}';
     }
 }

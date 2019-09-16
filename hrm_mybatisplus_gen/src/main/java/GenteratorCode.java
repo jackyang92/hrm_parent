@@ -15,7 +15,7 @@ public class GenteratorCode {
 
     public static void main(String[] args) throws InterruptedException {
         //用来获取Mybatis-Plus.properties文件的配置信息
-        ResourceBundle rb = ResourceBundle.getBundle("mybatisplus-page");
+        ResourceBundle rb = ResourceBundle.getBundle("mybatisplus-user");
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
@@ -40,7 +40,8 @@ public class GenteratorCode {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[] { "t_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategy.setInclude(new String[]{"t_page_config","t_site","t_pager"}); // 需要生成的表
+        strategy.setInclude(new String[]{"t_sso","t_vip_address","t_vip_base","t_vip_course_collect",
+                "t_vip_course_view","t_vip_grow_log","t_vip_login_log","t_vip_msg","t_vip_realinfo"}); // 需要生成的表
         mpg.setStrategy(strategy);
         // 包配置
         PackageConfig pc = new PackageConfig();

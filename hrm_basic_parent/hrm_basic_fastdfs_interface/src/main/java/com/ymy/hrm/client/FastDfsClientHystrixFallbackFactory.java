@@ -1,6 +1,7 @@
 package com.ymy.hrm.client;
 
 import com.ymy.hrm.util.AjaxResult;
+import feign.Response;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,8 +22,9 @@ public class FastDfsClientHystrixFallbackFactory implements FallbackFactory<Fast
             }
 
             @Override
-            public void download(String path) {
+            public Response download(String path) {
 
+                return null;
             }
         };
     }
