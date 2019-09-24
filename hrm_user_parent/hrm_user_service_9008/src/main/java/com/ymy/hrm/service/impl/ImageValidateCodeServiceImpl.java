@@ -2,7 +2,9 @@ package com.ymy.hrm.service.impl;
 
 import com.ymy.hrm.client.RedisClient;
 import com.ymy.hrm.service.ImageValidateCodeService;
+import com.ymy.hrm.util.AjaxResult;
 import com.ymy.hrm.util.VerifyCodeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Encoder;
@@ -38,5 +40,19 @@ public class ImageValidateCodeServiceImpl implements ImageValidateCodeService {
         //把图片加密返回
         BASE64Encoder encoder = new BASE64Encoder();
         return encoder.encode(data.toByteArray());
+    }
+
+    @Override
+    public AjaxResult validate(String codeUuid, String captcha) {
+        String code = redisClient.get(codeUuid);
+        if(StringUtils.isBlank(code)){
+            //只有过期
+            return AjaxResult.me().setSuccess(false).setMessage("请输入正确图形验证码!");
+        }
+        if(!code.equals(captcha)){
+            return AjaxResult.me().setSuccess(false).setMessage("请输入正确图形验证码!");
+
+        }
+        return AjaxResult.me();
     }
 }
